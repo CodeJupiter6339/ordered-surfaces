@@ -26,7 +26,7 @@ Baseline: per-column run counting on the *label mask* with K given (an upper bou
 
 Purity: % of columns where a surface stays in its dominant sheet. Tracking: for each full sheet, % of columns where the best surface stays inside it.
 
-Ablations (dirty crops, tracking): no smoothing −20 pts; K = median instead of p90 −5; letting surfaces sit on air (capped cost) 0 to −5; ∂² sharpening +2.5.
+Ablations (dirty crops, tracking): no smoothing −20 pts; K = median instead of p90 −5; letting surfaces sit on air (capped cost) 0 to −5; ∂² sharpening +2.5; subtracting the `scrollprize/surface_recto_3dunet` prediction as a boundary term (not trained on Scroll 1) −1 to −16, adding it −0.3.
 
 ## Limits
 - One scroll (Scroll 1), small crops, labels only where annotators labelled.
