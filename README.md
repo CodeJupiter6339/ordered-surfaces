@@ -1,5 +1,7 @@
 # ordered-surfaces
 
+[![tests](https://github.com/CodeJupiter6339/ordered-surfaces/actions/workflows/tests.yml/badge.svg)](https://github.com/CodeJupiter6339/ordered-surfaces/actions/workflows/tests.yml)
+
 Sheet separation in small CT crops by fitting K **ordered** surfaces per column (exact DP, min gap between sheets), then smoothing across neighbouring columns. Nothing from the labels is used at run time: the column axis comes from the CT structure tensor and K from per-column peak counts.
 
 ## Data
@@ -54,6 +56,15 @@ An earlier version of this README reported higher numbers (90–94% purity on 21
 - One column axis per cube, so oblique or curved sheets are cut at an angle.
 - Touching sheets are still the main failure mode (77% vs 81% overall).
 - Not yet integrated with any tracer (VC3D GrowPatch / lasagna).
+
+## Tests
+
+The synthetic tests need no scroll data. They cover perfect tracking, one-to-one matching, a halfway sheet swap, the full-sheet filter and cube-level bootstrap aggregation.
+
+```bash
+python -m pip install numpy scipy pytest
+python -m pytest -q
+```
 
 ## Reproduce
 Needs Python 3.12 with numpy, scipy, scikit-image, pynrrd (PyTorch for `gpu_dp.py`). Scripts expect the labels zip at `~/vesuvius/data/instance-labels/labels.zip` and write caches and logs to `~/vesuvius/spike/`.
